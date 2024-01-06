@@ -1,0 +1,12 @@
+# Habilitar la reescritura de URL
+RewriteEngine On
+
+# Redirigir todas las solicitudes a index.html, excepto las que tengan una extensión de archivo
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.html [L]
+
+
+
+# Redirigir todas las solicitudes a HTTPS
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
